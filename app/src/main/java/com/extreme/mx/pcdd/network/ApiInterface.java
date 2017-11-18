@@ -80,7 +80,7 @@ public class ApiInterface {
 	
 	public static int SUCCEED = 0;
 
-	public static String HOST = "http://103.231.166.19:50001/";
+	public static String HOST = "http://123.57.25.159:8080/";
 	public static String BASE_URL = HOST + "pcdd-api-client-interface/";
 
     public static String WAP_BACKWATER_RULE = HOST + "pcdd-wap/views/module/index/huishui.html";

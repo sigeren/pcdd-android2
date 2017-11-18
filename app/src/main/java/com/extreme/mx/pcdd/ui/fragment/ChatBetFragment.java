@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,12 +18,14 @@ import android.widget.TextView;
 
 import com.extreme.mx.pcdd.R;
 import com.extreme.mx.pcdd.entity.BettingJson;
+import com.extreme.mx.pcdd.manager.UserInfoManager;
 import com.extreme.mx.pcdd.network.ApiInterface;
 import com.extreme.mx.pcdd.network.HttpResultCallback;
 import com.extreme.mx.pcdd.network.MySubcriber;
 import com.extreme.mx.pcdd.network.bean.BetDetailInfo;
 import com.extreme.mx.pcdd.network.bean.GameOddsInfo;
 import com.extreme.mx.pcdd.network.bean.GameTypeInfo;
+import com.extreme.mx.pcdd.network.bean.UserInfo;
 import com.extreme.mx.pcdd.network.request.BettingRequest;
 import com.extreme.mx.pcdd.network.request.ExitRoomRequest;
 import com.extreme.mx.pcdd.network.request.GameTypeDataRequest;
@@ -357,7 +360,7 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
                                     .setNegativeButton("确定", null)
                                     .show();
                         } else {
-                            betting(json.game_count, point, Integer.parseInt(json.bili_id));
+                            betting(json.game_count, point, Integer.parseInt(json.bili_id),json);
                         }
                     }
                 }).show();
@@ -522,7 +525,16 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
                 if(betPoint > 0) {
                     switch (betDetailInfo.status) {
                         case 1:
-                            betting(betDetailInfo.game_num, betPoint, oddsInfo.id);
+                            BettingJson bettingJson = new BettingJson();
+                            UserInfo userInfo = UserInfoManager.getUserInfo(getContext());
+                            if(null != userInfo && !TextUtils.isEmpty(userInfo.nick_name)){
+                                bettingJson.nick_name =userInfo.nick_name ;
+                            }
+                            bettingJson.game_type = oddsInfo.bili_name;
+                            bettingJson.game_count = betDetailInfo.game_num;
+                            bettingJson.point = betPoint+"";
+                            bettingJson.bili_id = oddsInfo.id +"";
+                            betting(betDetailInfo.game_num, betPoint, oddsInfo.id,bettingJson);
                             break;
                         case 2:
                             T.showShort("封盘中，暂停下注");
@@ -592,8 +604,12 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
 
     /**
      * 下注
+     * @param gameNum  期数
+     * @param point
+     * @param oddsId
+     * @param bettingJson
      */
-    public void betting(String gameNum, final double point, final int oddsId) {
+    public void betting(final String gameNum, final double point, final int oddsId,final BettingJson bettingJson) {
         BettingRequest req = new BettingRequest();
         req.room_id = roomId+"";
         req.area_id = areaId+"";
@@ -607,11 +623,15 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
 
             @Override
             public void onCompleted() {
+                if(getActivity() == null)
+                    return;
+
                 userPoint = Arith.sub(userPoint, point);
                 tvMyPoint.setText(userPoint+"元宝");
+                sendMsg(bettingJson);
                 T.showShort("投注成功");
-                if(oddsDlg != null)
-                    oddsDlg.dismiss();
+//                if(oddsDlg != null)
+//                    oddsDlg.dismiss();
             }
 
             @Override
@@ -626,4 +646,14 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
         MySubcriber s = new MySubcriber(activity, callback, true, "下注中");
         ApiInterface.betting(req, s);
     }
+    public void sendMsg(BettingJson bettingJson){
+        UserInfo userInfo = UserInfoManager.getUserInfo(getContext());
+        if(bettingJson.nick_name !=null && null != userInfo && !TextUtils.isEmpty(userInfo.nick_name)){
+            bettingJson.nick_name =userInfo.nick_name ;
+        }
+        String json =new Gson().toJson(bettingJson);
+        sendTextMessage(json);
+    }
+
+
 }

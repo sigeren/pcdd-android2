@@ -19,11 +19,11 @@ import cn.sharesdk.framework.ShareSDK;
 
 public class PcddApp extends Application {
 
-    private static final String PKG_NAME = "com.extreme.mx.pcdd";
+    private static final String PKG_NAME = "com.df.youle";//com.df.youle
 
-    public static final String APP_KEY = "pcdd10";
+    public static final String APP_KEY = "pjpcdd";//"sc28pcdd";
 
-    public static final String APP_SECRET = "R1oee52CnCibO5VQ";
+    public static final String APP_SECRET = "RpEee12CnCibO5VQ";//"YsEeeflCXNU5CuQg";
 
     public static Context applicationContext;
 
