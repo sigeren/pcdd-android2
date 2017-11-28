@@ -4,12 +4,12 @@
         "source": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\res\\layout\\ease_row_sent_file.xml"
     },
     {
-        "merged": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_voice.xml",
-        "source": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\res\\layout\\ease_row_received_voice.xml"
-    },
-    {
         "merged": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_video.xml",
         "source": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\res\\layout\\ease_row_received_video.xml"
+    },
+    {
+        "merged": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_received_voice.xml",
+        "source": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\res\\layout\\ease_row_received_voice.xml"
     },
     {
         "merged": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_layout_emojicon_menu.xml",
@@ -164,12 +164,12 @@
         "source": "D:\\Work\\AndroidWorkspace\\pcdd-mx\\easeui\\res\\layout\\ease_search_bar.xml"
     },
     {
-        "merged": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_emojicon_tab_bar.xml",
-        "source": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\res\\layout\\ease_widget_emojicon_tab_bar.xml"
-    },
-    {
         "merged": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\simple_text_count_down.xml",
         "source": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\res\\layout\\simple_text_count_down.xml"
+    },
+    {
+        "merged": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_widget_emojicon_tab_bar.xml",
+        "source": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\res\\layout\\ease_widget_emojicon_tab_bar.xml"
     },
     {
         "merged": "E:\\javapro\\pcdd-Android\\pcdd-Android\\pcdd-android\\easeui\\build\\intermediates\\res\\merged\\release\\layout\\ease_row_sent_file.xml",

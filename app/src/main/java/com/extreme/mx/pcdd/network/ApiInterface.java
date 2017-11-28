@@ -199,7 +199,7 @@ public class ApiInterface {
 	public static void getGameTypeData(GameTypeDataRequest req, MySubcriber<GameTypeInfo> s) {
 		Encrypt.encrypt(req);
 		Observable o = RetrofitHelper.getInstance().getRetrofit().create(RxApiService.class)
-				.createGameTypeData(req).map(new ObjectRespFunc());
+				.createGameTypeData(req).map(new ArrayRespFunc<GameTypeInfo>());
 		toSubscribe(o, s);
 	}
 

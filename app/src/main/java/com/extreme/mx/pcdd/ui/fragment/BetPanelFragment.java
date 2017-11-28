@@ -44,7 +44,7 @@ public class BetPanelFragment extends BaseFragment
         Bundle b = new Bundle();
         b.putInt("page", page);
         b.putSerializable("title", data.name);
-//        b.putSerializable("data", data.list);
+        b.putSerializable("data", data.list);
         instance.setArguments(b);
         instance.viewPager = viewPager;
         return instance;

@@ -134,7 +134,7 @@ public interface RxApiService {
 
     /** 获取游戏比例 */
     @POST("room/bili/list")
-    Observable<ObjectResponse<GameTypeInfo>> createGameTypeData(@Body GameTypeDataRequest req);
+    Observable<ArrayResponse<GameTypeInfo>> createGameTypeData(@Body GameTypeDataRequest req);
 
     /** 房间下注记录以及倒计时接口 */
     @POST("room/open/info")

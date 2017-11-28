@@ -27,8 +27,8 @@ public class LotteryLogAdapter extends BaseRecyclerAdapter<BetDetailInfo.OpenTim
     public void onBind(ViewHolder holder, BetDetailInfo.OpenTime item, int position) {
         TextView tvNum = holder.getView(R.id.tvLotteryNum);
         tvNum.setText(Html.fromHtml(mContext.getString(R.string.pre_game_num, item.game_num+"")));
-        FormulaTextView tvFormula = holder.getView(R.id.tvLotteryResult);
-        tvFormula.setText(item.game_result_desc, item.color);
-        holder.setText(R.id.tvBetResultType, "("+item.result_type+")");
+        TextView tvFormula = holder.getView(R.id.tvLotteryResult);
+        tvFormula.setText(item.get_result );
+        holder.setText(R.id.tvBetResultType, item.game_result_desc);
     }
 }

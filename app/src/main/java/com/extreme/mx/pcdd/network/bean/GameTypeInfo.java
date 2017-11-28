@@ -10,7 +10,9 @@ import java.util.ArrayList;
 public class GameTypeInfo implements Serializable {
 
     public String name;
-    public ArrayList<GameOddsInfo> te_shu;
-    public ArrayList<GameOddsInfo> da_xiao;
-    public ArrayList<GameOddsInfo> shu_zi;
+//    public ArrayList<GameOddsInfo> te_shu;
+//    public ArrayList<GameOddsInfo> da_xiao;
+//    public ArrayList<GameOddsInfo> shu_zi;
+
+    public ArrayList<GameOddsInfo> list;
 }

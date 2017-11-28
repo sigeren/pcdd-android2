@@ -1,4 +1,4 @@
-package com.extreme.mx.pcdd.ui.widget.dialog;
+package  com.extreme.mx.pcdd.ui.widget.dialog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +22,7 @@ import com.extreme.mx.pcdd.network.bean.GameOddsInfo;
 import com.extreme.mx.pcdd.network.bean.GameTypeInfo;
 import com.extreme.mx.pcdd.ui.WebLoadActivity;
 import com.extreme.mx.pcdd.ui.adapter.BetPanelPagerAdapter;
-import com.extreme.mx.pcdd.ui.fragment.BetDXDSFragment;
-import com.extreme.mx.pcdd.ui.fragment.BetNumberFragment;
-import com.extreme.mx.pcdd.ui.fragment.BetSpecialFragment;
+import com.extreme.mx.pcdd.ui.fragment.BetPanelFragment;
 import com.extreme.mx.pcdd.ui.fragment.WebLoadFragment;
 import com.extreme.mx.pcdd.util.Arith;
 import com.extreme.mx.pcdd.util.BitmapTool;
@@ -45,14 +43,14 @@ public class BettingOddsDlg extends DialogFragment implements View.OnClickListen
     private Button btnMinPoint;
     private Button btnDoublePoint;
 
-    private GameTypeInfo gameTypeInfo;
+    private ArrayList<GameTypeInfo> gameTypeInfo;
 
     public int roomId;
     public int areaId;
     public double minPoint;  //个人下注下限
     public double maxPoint;  //个人下注上限
 
-    public static BettingOddsDlg getInstance(GameTypeInfo gameTypeInfo) {
+    public static BettingOddsDlg getInstance(ArrayList<GameTypeInfo> gameTypeInfo) {
         BettingOddsDlg instance = new BettingOddsDlg();
         Bundle b = new Bundle();
         b.putSerializable("data", gameTypeInfo);
@@ -67,7 +65,7 @@ public class BettingOddsDlg extends DialogFragment implements View.OnClickListen
         getDialog().getWindow().setGravity(Gravity.BOTTOM);
         getDialog().setCanceledOnTouchOutside(true);
 
-        gameTypeInfo = (GameTypeInfo) getArguments().getSerializable("data");
+        gameTypeInfo = (ArrayList<GameTypeInfo>) getArguments().getSerializable("data");
 
         View view = inflater.inflate(R.layout.dlg_betting_odds, container);
         vpPanel = (ViewPager) view.findViewById(R.id.vpBetPanel);
@@ -77,12 +75,10 @@ public class BettingOddsDlg extends DialogFragment implements View.OnClickListen
         btnDoublePoint = (Button) view.findViewById(R.id.btnDoublePoint);
 
         List<Fragment> fragments = new ArrayList<Fragment>();
-        if(gameTypeInfo.da_xiao!=null && gameTypeInfo.da_xiao.size()>0)
-            fragments.add(BetDXDSFragment.getInstance(vpPanel, gameTypeInfo.da_xiao));
-        if(gameTypeInfo.shu_zi!=null && gameTypeInfo.shu_zi.size()>0)
-            fragments.add(BetNumberFragment.getInstance(vpPanel, gameTypeInfo.shu_zi));
-        if(gameTypeInfo.te_shu!=null && gameTypeInfo.te_shu.size()>0)
-            fragments.add(BetSpecialFragment.getInstance(vpPanel, gameTypeInfo.te_shu));
+        for (int i=0; i<gameTypeInfo.size(); i++) {
+            GameTypeInfo item = gameTypeInfo.get(i);
+            fragments.add(BetPanelFragment.getInstance(vpPanel, item, i));
+        }
         vpPanel.setAdapter(new BetPanelPagerAdapter(getChildFragmentManager(), fragments));
 
         btnBetting.setOnClickListener(this);

@@ -54,6 +54,7 @@ import com.hyphenate.easeui.widget.EaseChatInputMenu;
 import com.hyphenate.easeui.widget.SimpleCountDownTextView;
 import com.hyphenate.easeui.widget.chatrow.EaseCustomChatRowProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,7 +68,7 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
     private TextView tvPreGameNum;
     private SimpleCountDownTextView tvCountDown;
     private TextView tvMyPoint;
-    private FormulaTextView tvBetFormula;
+    private TextView tvBetFormula;
     private TextView tvBetResultType;
     private LinearLayout llLotteryLog;
     private LinearLayout llRefreshPoint;
@@ -135,7 +136,7 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
         tvPreGameNum = (TextView) getView().findViewById(R.id.tvPreGameNum);
         tvCountDown = (SimpleCountDownTextView) getView().findViewById(R.id.tvCountDown);
         tvMyPoint = (TextView) getView().findViewById(R.id.tvMyPoint);
-        tvBetFormula = (FormulaTextView) getView().findViewById(R.id.tvBetFormula);
+        tvBetFormula = (TextView) getView().findViewById(R.id.tvBetFormula);
         tvBetResultType = (TextView) getView().findViewById(R.id.tvBetResultType);
         llLotteryLog = (LinearLayout) getView().findViewById(R.id.llLotteryLog);
         llRefreshPoint = (LinearLayout) getView().findViewById(R.id.llRefreshPoint);
@@ -448,7 +449,7 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
         GameTypeDataRequest req = new GameTypeDataRequest();
         req.area_id = areaId+"";
         req.game_type = gameType+"";
-        HttpResultCallback<GameTypeInfo> callback = new HttpResultCallback<GameTypeInfo>() {
+        HttpResultCallback<ArrayList<GameTypeInfo>> callback = new HttpResultCallback<ArrayList<GameTypeInfo>>() {
             @Override
             public void onStart() {
             }
@@ -463,7 +464,9 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
             }
 
             @Override
-            public void onNext(GameTypeInfo gameTypeInfo) {
+            public void onNext(ArrayList<GameTypeInfo> gameTypeInfo) {
+                if(getActivity() == null)
+                    return;
                 oddsDlg = BettingOddsDlg.getInstance(gameTypeInfo);
                 oddsDlg.setBetOddsCallback(ChatBetFragment.this);
                 oddsDlg.roomId = roomId;
@@ -596,9 +599,9 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
         tvMyPoint.setText(data.point+"元宝");
         if(data.first_result != null) {
             tvPreGameNum.setText(Html.fromHtml(getString(R.string.pre_game_num, data.first_result.game_num+"")));
-            tvBetFormula.setText(data.first_result.game_result_desc, data.first_result.color);
-//            tvBetFormula.setText(data.first_result.get_result);
-            tvBetResultType.setText("("+data.first_result.result_type+")");
+//            tvBetFormula.setText(data.first_result.game_result_desc, data.first_result.color);
+            tvBetFormula.setText(data.first_result.get_result);
+            tvBetResultType.setText(data.first_result.game_result_desc);
         }
     }
 
@@ -647,12 +650,12 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
         ApiInterface.betting(req, s);
     }
     public void sendMsg(BettingJson bettingJson){
-        UserInfo userInfo = UserInfoManager.getUserInfo(getContext());
-        if(bettingJson.nick_name !=null && null != userInfo && !TextUtils.isEmpty(userInfo.nick_name)){
-            bettingJson.nick_name =userInfo.nick_name ;
-        }
-        String json =new Gson().toJson(bettingJson);
-        sendTextMessage(json);
+//        UserInfo userInfo = UserInfoManager.getUserInfo(getContext());
+//        if(bettingJson.nick_name !=null && null != userInfo && !TextUtils.isEmpty(userInfo.nick_name)){
+//            bettingJson.nick_name =userInfo.nick_name ;
+//        }
+//        String json =new Gson().toJson(bettingJson);
+//        sendTextMessage(json);
     }
 
 

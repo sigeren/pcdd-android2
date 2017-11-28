@@ -71,7 +71,8 @@ public class RechargeOnlineSecondActivity extends BaseTopActivity implements Vie
             getView(R.id.btnPayCompleted).setVisibility(View.GONE);
         }
 
-        ImageLoadManager.getInstance().displayImage(qrUrl, ivQr);
+        Bitmap bitmap= ImageLoadManager.getInstance().stringtoBitmap(qrUrl,this);
+        ivQr.setImageBitmap(bitmap);
 
         getView(R.id.btnPrevious).setOnClickListener(this);
         getView(R.id.btnRecharge).setOnClickListener(this);

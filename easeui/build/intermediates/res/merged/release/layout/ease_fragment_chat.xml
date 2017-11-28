@@ -102,7 +102,7 @@
                 android:textColor="#333"
                 android:text="第几期"/>
 
-            <com.extreme.mx.pcdd.ui.widget.FormulaTextView
+            <TextView
                 android:id="@+id/tvBetFormula"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
