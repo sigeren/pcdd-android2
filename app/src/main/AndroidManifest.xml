@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.extreme.mx.pcdd" >
+    package="com.df.youle">
 
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -38,24 +38,24 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
+        android:name="com.df.youle.app.PcddApp"
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
-        android:largeHeap="true"
         android:label="@string/app_name"
-        android:name="com.extreme.mx.pcdd.app.PcddApp"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!-- 设置环信应用的AppKey  1155170809178544#pc 1122170827115179#dingfeng2 1122170827115179#lottery-->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="1122170827115179#dingfeng"/>
+            android:value="1122170827115179#dingfeng" />
         <!-- 声明SDK所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true" />
         <!-- 声明SDK所需的receiver -->
-        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver" >
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
 
@@ -76,15 +76,13 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <!-- alipay sdk end -->
 
         <!-- share sdk begin -->
@@ -93,7 +91,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <data android:scheme="tencent100371282" />
 
@@ -106,87 +104,97 @@
 
         <!-- 微信分享回调 -->
         <activity
-            android:name="com.extreme.mx.pcdd.wxapi.WXEntryActivity"
+            android:name="com.df.youle.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- share sdk end -->
 
-        <activity android:name="com.extreme.mx.pcdd.MainActivity"
+        <activity
+            android:name="com.df.youle.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.MoreActivity"
+        <activity
+            android:name="com.df.youle.ui.MoreActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.LevelSelectActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.df.youle.ui.LevelSelectActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.RoomListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.df.youle.ui.RoomListActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.EditPersonActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.df.youle.ui.EditPersonActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.WalletActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.df.youle.ui.WalletActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.BackwaterActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.df.youle.ui.BackwaterActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name="com.extreme.mx.pcdd.ui.AccountingRecordActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.df.youle.ui.AccountingRecordActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.GameRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.GameRecordActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.RechargeRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.RechargeRecordActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.WithdrawRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.WithdrawRecordActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.RechargeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.RechargeActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.BindBankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.BindBankActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.GiftListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.GiftListActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.RechargeOnlineFirstepActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.RechargeOnlineFirstepActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.RechargeOnlineSecondActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.RechargeOnlineSecondActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.LoginActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.RegisterActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.SettingActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.ChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.ChatActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <!--环信begin-->
         <activity
             android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
@@ -198,8 +206,7 @@
         <activity
             android:name="com.hyphenate.easeui.ui.EaseShowNormalFileActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide" >
-        </activity>
+            android:theme="@style/horizontal_slide"></activity>
         <!-- 百度地图所需的service -->
         <service
             android:name="com.baidu.location.f"
@@ -209,80 +216,108 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="3ecea51f560650b1ed8a4b99808f52e8" />
         <!--环信end-->
-        <activity android:name="com.extreme.mx.pcdd.ui.GameRecordFilterActivity"
+        <activity
+            android:name="com.df.youle.ui.GameRecordFilterActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.WebLoadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.WebLoadActivity"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.EditWithdrawPwdActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.df.youle.ui.EditWithdrawPwdActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.WithdrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.WithdrawActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.BindMobileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.BindMobileActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.MyMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.MyMessageActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.AliAcountListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.AliAcountListActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.BankAccountListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.BankAccountListActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.TransferBankActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.TransferAliActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.EditLoginPwdActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.RechargeLogActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.GiftExchangeLogActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.AboutActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.ResetLoginPwdActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.CusSvrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.TransferBankActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.LoadingActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.ShareActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.ProxyActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.df.youle.ui.TransferAliActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.MyEarningActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.df.youle.ui.EditLoginPwdActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.ShareRuleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.RechargeLogActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.LotteryLogActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.GiftExchangeLogActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.extreme.mx.pcdd.ui.LotteryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.AboutActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.ResetLoginPwdActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.CusSvrActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.df.youle.ui.LoadingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.df.youle.ui.ShareActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.ProxyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="com.df.youle.ui.MyEarningActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.ShareRuleActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.LotteryLogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.df.youle.ui.LotteryActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
