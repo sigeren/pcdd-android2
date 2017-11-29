@@ -21,6 +21,8 @@ import com.df.youle.ui.base.BaseFragment;
 import com.df.youle.util.CheckUtil;
 import com.df.youle.util.T;
 
+import java.util.List;
+
 
 /**
  * Created by hang on 2017/1/23.
@@ -79,7 +81,12 @@ public class RechargeContentFragment extends BaseFragment implements View.OnClic
                 });
                 rvOnline.setAdapter(onlineAdapter);
 
-                final PayTypeListAdapter offlineAdapter = new PayTypeListAdapter(activity, data.offline);
+
+                List<PayTypeInfo> data3  =  data.offline;
+                if(data3!=null&& data3.size()>=3){
+                    data3.remove(2);
+                }
+                final PayTypeListAdapter offlineAdapter = new PayTypeListAdapter(activity, data3);
                 offlineAdapter.setOnRecyclerItemClickListener(new BaseRecyclerAdapter.OnRecyclerItemClickListener() {
                     @Override
                     public void onRecyclerItemClicked(BaseRecyclerAdapter adapter, View view, int position) {

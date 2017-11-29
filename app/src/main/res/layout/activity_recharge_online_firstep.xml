@@ -156,5 +156,5 @@
         android:layout_margin="8dp"
         android:textSize="11sp"
         android:textColor="@color/text_gray"
-        android:text="温馨提示：\n1.微信支付(扫一扫直接到账)：方便快捷，支付完成立即到账。\n2.支付宝支付(扫一扫直接到账)：方便快捷，支付完成立即到账。"/>
+        android:text="温馨提示：\n1.微信支付、支付宝、QQ(扫一扫直接到账)：方便快捷，支付完成立即到账。"/>
 </LinearLayout>

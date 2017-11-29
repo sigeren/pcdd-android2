@@ -33,11 +33,11 @@ public class RechargeOnlineSecondActivity extends BaseTopActivity implements Vie
 
     private static final String PKG_ALI = "com.eg.android.AlipayGphone";
     private static final String PKG_WX = "com.tencent.mm";
-
+    private static final String PKG_QQ = "com.tencent.mobileqq";
     private ImageView ivQr;
 
     private String title;
-    private String orderNo;
+    private String orderNo = "";
     private double fee;
     private String qrUrl;
     private String savePath;
@@ -71,8 +71,12 @@ public class RechargeOnlineSecondActivity extends BaseTopActivity implements Vie
             getView(R.id.btnPayCompleted).setVisibility(View.GONE);
         }
 
-        Bitmap bitmap= ImageLoadManager.getInstance().stringtoBitmap(qrUrl,this);
-        ivQr.setImageBitmap(bitmap);
+        if(qrUrl.contains("http://")){
+            ImageLoadManager.getInstance().displayImage(qrUrl,ivQr);
+        }else{
+            Bitmap bitmap= ImageLoadManager.getInstance().stringtoBitmap(qrUrl,this);
+            ivQr.setImageBitmap(bitmap);
+        }
 
         getView(R.id.btnPrevious).setOnClickListener(this);
         getView(R.id.btnRecharge).setOnClickListener(this);
@@ -94,12 +98,8 @@ public class RechargeOnlineSecondActivity extends BaseTopActivity implements Vie
                     return;
                 if((bitmap = ((BitmapDrawable)drawable).getBitmap()) != null) {
                     if (BitmapTool.saveBitmap2Local(this, bitmap, savePath)) {
-                        T.showShort("二维码已保存至"+savePath+"，请打开支付APP");
-//                        if(payType == 0) {
-//                            startAppToPay(PKG_ALI);
-//                        } else if(payType == 1) {
-//                            startAppToPay(PKG_WX);
-//                        }
+
+                        checkPayType();
                     } else {
                         T.showLong("二维码保存失败，请手动截图保存，然后打开支付APP");
                     }
@@ -144,7 +144,41 @@ public class RechargeOnlineSecondActivity extends BaseTopActivity implements Vie
                 break;
         }
     }
+    String pkg = null;
+    String payname = null;
+    public void checkPayType(){
 
+        if(title.contains("微信")){
+            payname = "微信";
+            pkg = PKG_WX;
+        }else if(title.contains("支付宝")){
+            payname = "支付宝";
+            pkg = PKG_ALI;
+        }else if(title.contains("QQ")||title.contains("qq")){
+            payname = "QQ";
+            pkg = PKG_QQ;
+        }
+
+        new AlertDialog.Builder(RechargeOnlineSecondActivity.this)
+                .setTitle("提示")
+                .setMessage("将为您保存二维码,并打开"+payname+",是否立即充值？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        startAppToPay(pkg);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                        T.showShort("二维码已保存至"+savePath+"，请打开支付APP");
+                    }
+                })
+                .show();
+
+    }
     public void startAppToPay(String pkgName) {
         if(!ApkUtil.startApp(this, pkgName))
             T.showShort("启动应用失败，请手动打开应用支付");

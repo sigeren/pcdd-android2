@@ -381,9 +381,10 @@ public class ChatBetFragment extends EaseChatFragment implements BettingOddsDlg.
 
     @Override
     public void onBackPressed() {
-        if (inputMenu.onBackPressed()) {
-            exitRoom();
-        }
+        getActivity().finish();
+//        if (inputMenu.onBackPressed()) {
+//            exitRoom();
+//        }
     }
 
     public void sendJoinedMsg() {
